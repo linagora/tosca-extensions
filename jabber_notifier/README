@@ -1,3 +1,5 @@
 = Jabber Notifier
 
-Description goes here
+This extension allows to receive instant notification when a request is
+submitted. It requires the gem 'xmpp4r', which is the main motivation
+for its transformation into an extension.
