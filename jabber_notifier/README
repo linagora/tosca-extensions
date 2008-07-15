@@ -3,3 +3,6 @@
 This extension allows to receive instant notification when a request is
 submitted. It requires the gem 'xmpp4r', which is the main motivation
 for its transformation into an extension.
+
+You'll need a real jabber account, since the protocol does not allow you
+to spam users freely :)
