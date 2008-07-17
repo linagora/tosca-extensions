@@ -6,17 +6,7 @@ class JabberNotifierExtension < Radiant::Extension
   url "http://tosca-project.net"
 
   def activate
-    puts "JabberNotifierExtension : it's activated !"
-=begin
-    class DemandesController < ApplicationController
-      include JabberNotifier
-      alias_method :create, :create_without_jabber
-      def create
-        create_without_jabber
-        @demande.send_jabber_notification
-      end
-    end
-=end
+    require 'jabber_demandes_controller'
   end
 
   def deactivate

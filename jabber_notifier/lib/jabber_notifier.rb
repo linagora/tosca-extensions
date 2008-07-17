@@ -47,6 +47,3 @@ def Jabber::debuglog(string)
   # Log in stdout unless JabberNotifier could be log in tosca
   puts "#{t} #{s}" unless JabberNotifier::debug("#{t} #{s}")
 end
-
-
-puts "JABBER : COUCOU"
