@@ -1,0 +1,4 @@
+= Colored Text Files
+
+This extensions requires 'ultraviolet' gem. It prettifies text attachments and
+colors them according to this gem.
