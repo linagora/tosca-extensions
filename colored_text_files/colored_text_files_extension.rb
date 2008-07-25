@@ -2,6 +2,8 @@
 # require_dependency 'application'
 
 require 'uv'
+require 'attachment'
+
 class ColoredTextFilesExtension < Tosca::Extension
   version "1.0"
   description "Color attached text files with ultra violet"
