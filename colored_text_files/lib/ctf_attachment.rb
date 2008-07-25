@@ -1,6 +1,6 @@
 module CtfAttachment
-  def self.included(base)
-    base.class_eval {
+  def self.extended(base)
+    class << base
       file_column :file, :fix_file_extensions => nil,
       :uv => { :theme => "active4d" },
       :magick => {
@@ -8,6 +8,6 @@ module CtfAttachment
           :fit_size => { :size => "800x600>" }
         }
       }
-    }
+    end
   end
 end
