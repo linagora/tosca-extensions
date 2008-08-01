@@ -2,3 +2,17 @@
 
 This extensions requires 'ultraviolet' gem. It prettifies text attachments and
 colors them according to this gem.
+
+= Instal Instructions
+
+You'll need the development lib of oniguruma.
+* On debian/ubuntu :
+<pre>
+$ sudo apt-get install libonig2-dev
+$ sudo gem install ultraviolet
+</pre>
+* On fedora/mandriva :
+<pre>
+$ sudo apt-get install oniguruma-devel
+$ sudo gem install ultraviolet
+</pre>
