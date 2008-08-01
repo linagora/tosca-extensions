@@ -1,3 +1,4 @@
+require 'xmpp4r'
 # This module regroups all jabber stuff
 module JabberNotifier
 

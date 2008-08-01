@@ -34,11 +34,13 @@ module CtfFileColumn
   end
 
   def file_column_with_uv(attr, options={})
+    # allows to activate uv in an extension model
+    return if method_defined? attr
+
     options_uv = options[:uv]
     if options_uv
       options_uv[:theme] = "active4d" unless options_uv.has_key? :theme
     end
-
     file_column_without_uv(attr, options)
 
     if options_uv
@@ -66,7 +68,6 @@ module CtfBaseUploadedFile
       possible_mode = Uv.syntax_for_file(absolute_path)
 
       mode = possible_mode.empty? ? 'plain_text' : possible_mode.first.first
-
       result = Uv.parse(content, "xhtml", mode, true, options[:uv][:theme])
       path = absolute_path << get_file_suffix
       File.open(path, "w+") { |f| f.write(result) }
