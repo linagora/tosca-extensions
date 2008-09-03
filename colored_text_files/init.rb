@@ -11,6 +11,7 @@ ActionView::Base.send :include, CtfFileColumnHelper
 
 # In order to not have conflict with other extension #
 Rails.configuration.after_initialize do
+  require_dependency 'application'
   AttachmentsController.send :include, CtfAttachmentsController
   DemandesController.class_eval { helper :uv }
 end
