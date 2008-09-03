@@ -3,7 +3,7 @@ config = Rails.configuration
 # Used to generate export in Ods Format
 # Versions are enforced because ruport devs seems to love
 # "the break everything at each release" mantra
-config.gem 'acts_as_reportable', :lib => 'ruport/acts_as_reportable', :version => '1.1.0'
+config.gem 'acts_as_reportable', :lib => 'ruport/acts_as_reportable', :version => '1.1.1'
 config.gem 'ruport', :version => '1.6.1'
 config.gem 'ruport-util', :lib => 'ruport/util', :version => '0.14.0'
 
