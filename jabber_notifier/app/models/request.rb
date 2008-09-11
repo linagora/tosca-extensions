@@ -1,4 +1,4 @@
-class Demande < ActiveRecord::Base
+class Request < ActiveRecord::Base
   # This method use App::JabberAccount & App::JabberPassword in order
   # to work. So yes, you'll need to create a custom account, because Jabber
   # Protocol does not allow to spam users without a real account :).

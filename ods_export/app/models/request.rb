@@ -1,4 +1,4 @@
-class Demande < ActiveRecord::Base
+class Request < ActiveRecord::Base
   acts_as_reportable
 
   # Duplicated from init.rb since we want to have all mode of Rails
