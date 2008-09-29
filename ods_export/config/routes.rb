@@ -1,1 +1,1 @@
-formatted_export(%w(requests contributions users phonecalls))
+formatted_export(%w(issues contributions users phonecalls))
