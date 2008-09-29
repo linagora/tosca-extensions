@@ -14,7 +14,7 @@ class Contribution < ActiveRecord::Base
   end
 
   def pname_software
-    pname(logiciel)
+    pname(software)
   end
 
   def pname_etatreversement
