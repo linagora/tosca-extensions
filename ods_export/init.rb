@@ -11,8 +11,8 @@ require_plugin 'ar_actions'
 
 # In order to not have conflict with other extension #
 Rails.configuration.after_initialize do
-  RequestsController.class_eval { helper :export }
-  %w(contract contribution request phonecall user).each { |dep|
+  IssuesController.class_eval { helper :export }
+  %w(contract contribution issue phonecall user).each { |dep|
     require_dependency dep
   }
 end

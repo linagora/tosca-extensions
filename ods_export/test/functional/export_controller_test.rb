@@ -1,23 +1,13 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'requests_controller'
+require 'issues_controller'
 
 # Re-raise errors caught by the controller.
-# class RequestsController; def rescue_action(e) raise e end; end
+# class IssuesController; def rescue_action(e) raise e end; end
 class ExportControllerTest < Test::Unit::TestCase
 
-   fixtures :requests, :commentaires,
-    :recipients, :clients, :statuts, :ingenieurs, :severites,
-    :logiciels, :socles, :clients_socles, :versions, :permissions, :roles,
-    :permissions_roles, :contracts, :contracts_engagements, :engagements,
-    :contracts_users, :users, :attachments, :contributions,
-    :typerequests
-
+  fixtures :all
 
   def setup
-    @controller = ExportController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-
     login 'admin', 'admin'
   end
 
@@ -37,8 +27,8 @@ class ExportControllerTest < Test::Unit::TestCase
     assert_response :success
   end
 
-  def test_requests
-    get :requests, :format => 'ods'
+  def test_issues
+    get :issues, :format => 'ods'
     assert_response :success
   end
 

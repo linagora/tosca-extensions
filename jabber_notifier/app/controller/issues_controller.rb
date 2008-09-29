@@ -1,7 +1,7 @@
-class RequestsController < ApplicationController
+class IssuesController < ApplicationController
   alias_method :create_without_jabber, :create
   def create
     self.create_without_jabber()
-    @request.send_jabber_notification
+    @issue.send_jabber_notification
   end
 end
