@@ -13,7 +13,7 @@ class Contribution < ActiveRecord::Base
     pname(typecontribution)
   end
 
-  def pname_logiciel
+  def pname_software
     pname(logiciel)
   end
 
