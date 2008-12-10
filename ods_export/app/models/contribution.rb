@@ -9,16 +9,16 @@ class Contribution < ActiveRecord::Base
     (object ? object.name : '-')
   end
 
-  def pname_typecontribution
-    pname(typecontribution)
+  def pname_contributiontype
+    pname(contributiontype)
   end
 
   def pname_software
     pname(software)
   end
 
-  def pname_etatreversement
-    pname(etatreversement)
+  def pname_contributionstate
+    pname(contributionstate)
   end
 
   def clos_enhance
