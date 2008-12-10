@@ -4,4 +4,8 @@ class Issue < ActiveRecord::Base
   # Duplicated from init.rb since we want to have all mode of Rails
   # working out of the box
   register_action 'issues_export_link'
+
+  def expert_name
+    (ingenieur ? ingenieur.user.name : '-')
+  end
 end

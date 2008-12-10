@@ -122,9 +122,9 @@ class ExportController < ApplicationController
   end
 
   def compute_issues(type, options_generate)
-    columns = [ 'id', 'softwares_name', 'clients_name', 'severites_name',
+    columns = [ 'id', 'softwares_name', 'clients_name', 'severities_name',
       'created_on_formatted', 'socle', 'updated_on_formatted', 'resume',
-      'statuts_name', 'typeissues_name'
+      'statuts_name', 'issuetypes_name', 'expert_name'
     ]
     options= { :order => 'issues.created_on', :conditions => flash[:conditions],
       :select => Issue::SELECT_LIST, :joins => Issue::JOINS_LIST,
@@ -137,7 +137,7 @@ class ExportController < ApplicationController
       report.rename_columns columns,
        [ _('Id'), _('Software'), _('Customer'), _('Severity'),
          _('Submission date') , _('Platform'), _('Last update'),
-         _('Summary'), _('Status'), _('Type') ]
+         _('Summary'), _('Status'), _('Type'), _('Assigned to') ]
     end
 
     generate_report(report, type, options_generate)
@@ -165,7 +165,7 @@ class ExportController < ApplicationController
     filename = [ prefix, params[:action], suffix].join('_') + file_extension
 
      #this is required if you want this to work with IE
-     if issue.env['HTTP_USER_AGENT'] =~ /msie/i
+     if request.env['HTTP_USER_AGENT'] =~ /msie/i
        headers['Pragma'] = 'public'
        headers['Content-type'] = content_type
        headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
@@ -180,51 +180,6 @@ class ExportController < ApplicationController
     render(:text =>report_out , :layout => false)
   end
 
-  #export the comex table in ods
-  def comex
-    clients = flash[:clients]
-    issues= flash[:issues]
-    total = flash[:total]
-    data = []
-    row = ['', _('To be closed')+ " (I)",'','','',
-      _('New issues'),'','','',
-      _("Issues closed \n this week") + ' (IV)','','','',
-      _("Total in progress \n end week") + ' (V=I+III-IV)','','','',
-      _('TOTAL')
-    ]
-    data << row
-    row = [_('Customer')]
-    4.times do
-      row += [_('Blocking'), _('Major'), _('Minor'), _('None')]
-    end
-    row << _('To close')
-    data << row
-    clients.each do |c|
-      name = c.name.intern
-      row = [name]
-      repeat4times row,issues[:last_week][name],1
-      repeat4times row,issues[:new][name],1
-      repeat4times row,issues[:closed][name],1
-      repeat4times row, total[:active][name],0
-      row << total[:final][name]
-      data << row
-    end
-
-    row = [_('TOTALS')]
-    repeat4times row, issues[:last_week][:total],0
-    repeat4times row, issues[:new][:total],0
-    repeat4times row, issues[:closed][:total],0
-    repeat4times row, total[:active][:total],0
-    row << total[:final][:total]
-    data << row
-
-    report =  Table(:column_names => data[1], :data => data[2..-1])
-    generate_report(report, :ods, {})
-
-    flash[:clients]= flash[:clients]
-    flash[:issues]= flash[:issues]
-    flash[:total]= flash[:total]
-  end
 
   private
   def repeat4times( row, element, decalage)
