@@ -10,8 +10,8 @@ class Phonecall < ActiveRecord::Base
   def contract_name
     contract.name
   end
-  def ingenieur_name
-    ingenieur.name
+  def engineer_name
+    engineer.name
   end
   def recipient_name
     recipient ? recipient.name : '-'

@@ -6,6 +6,6 @@ class Issue < ActiveRecord::Base
   register_action 'issues_export_link'
 
   def expert_name
-    (ingenieur ? ingenieur.user.name : '-')
+    (engineer ? engineer.name : '-')
   end
 end
