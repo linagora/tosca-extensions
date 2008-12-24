@@ -63,13 +63,13 @@ class ExportController < ApplicationController
   end
 
   def compute_users(type)
-    options = { :order => 'users.login', :include =>
-      [:recipient,:ingenieur,:role], :conditions => flash[:conditions],
-      :methods => ['recipient_client_name', 'role_name']
+    options = { :order => 'users.login', :include => [:role],
+      :conditions => flash[:conditions],
+      :methods => ['client_name', 'role_name']
     }
     report = User.report_table(:all, options)
     columns = ['id','login','name','email','telephone',
-      'recipient_client_name', 'role_name']
+      'client_name', 'role_name']
 
     report.reorder columns
     report.rename_columns columns,
@@ -92,11 +92,9 @@ class ExportController < ApplicationController
   end
 
   def compute_phonecalls(type)
-    columns= ['contract_name', 'ingenieur_name', 'recipient_name']
-    options = { :order => 'phonecalls.start', :include =>
-      [:recipient,:ingenieur,:contract,:issue],
-      :conditions => flash[:conditions],
-      :methods => columns }
+    columns= ['contract_name', 'engineer_name', 'recipient_name']
+    options = { :order => 'phonecalls.start', :include => [:contract,:issue],
+      :conditions => flash[:conditions], :methods => columns }
     report = Phonecall.report_table(:all, options)
 
     columns.push( 'start','end')
@@ -160,7 +158,7 @@ class ExportController < ApplicationController
     flash[:conditions] = flash[:conditions]
     file_extension = MIME_EXTENSION[type].first
     content_type = MIME_EXTENSION[type].last
-    prefix = ( @recipient ? @recipient.client.name : 'OSSA' )
+    prefix = ( session[:user].recipient? ? session[:user].client.name : 'OSSA' )
     suffix = Time.now.strftime('%d_%m_%Y')
     filename = [ prefix, params[:action], suffix].join('_') + file_extension
 
