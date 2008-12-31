@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
 
   private
   # For Ruport :
-  def recipient_client_name
-    recipient.client.name if recipient
+  def client_name
+    client.name if recipient?
   end
 
   def role_name

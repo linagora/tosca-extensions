@@ -64,12 +64,12 @@ class ExportController < ApplicationController
 
   def compute_users(type)
     options = { :order => 'users.login', :include =>
-      [:recipient,:ingenieur,:role], :conditions => flash[:conditions],
-      :methods => ['recipient_client_name', 'role_name']
+      [:role], :conditions => flash[:conditions],
+      :methods => ['client_name', 'role_name']
     }
     report = User.report_table(:all, options)
     columns = ['id','login','name','email','telephone',
-      'recipient_client_name', 'role_name']
+      'client_name', 'role_name']
 
     report.reorder columns
     report.rename_columns columns,
@@ -92,9 +92,9 @@ class ExportController < ApplicationController
   end
 
   def compute_phonecalls(type)
-    columns= ['contract_name', 'ingenieur_name', 'recipient_name']
+    columns= ['contract_name', 'engineer_name', 'recipient_name']
     options = { :order => 'phonecalls.start', :include =>
-      [:recipient,:ingenieur,:contract,:issue],
+      [:recipient,:engineer,:contract,:issue],
       :conditions => flash[:conditions],
       :methods => columns }
     report = Phonecall.report_table(:all, options)
@@ -123,7 +123,7 @@ class ExportController < ApplicationController
 
   def compute_issues(type, options_generate)
     columns = [ 'id', 'softwares_name', 'clients_name', 'severities_name',
-      'created_on_formatted', 'socle', 'updated_on_formatted', 'resume',
+      'created_on_formatted', 'updated_on_formatted', 'resume',
       'statuts_name', 'issuetypes_name', 'expert_name'
     ]
     options= { :order => 'issues.created_on', :conditions => flash[:conditions],
@@ -136,7 +136,7 @@ class ExportController < ApplicationController
       report.reorder columns
       report.rename_columns columns,
        [ _('Id'), _('Software'), _('Customer'), _('Severity'),
-         _('Submission date') , _('Platform'), _('Last update'),
+         _('Submission date'), _('Last update'),
          _('Summary'), _('Status'), _('Type'), _('Assigned to') ]
     end
 

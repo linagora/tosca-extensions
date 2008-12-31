@@ -11,7 +11,6 @@ class ExportControllerTest < Test::Unit::TestCase
     login 'admin', 'admin'
   end
 
-
   def test_contributions
     get :contributions, :format => 'ods'
     assert_response :success
