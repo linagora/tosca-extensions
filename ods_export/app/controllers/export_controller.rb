@@ -63,8 +63,8 @@ class ExportController < ApplicationController
   end
 
   def compute_users(type)
-    options = { :order => 'users.login', :include =>
-      [:role], :conditions => flash[:conditions],
+    options = { :order => 'users.login', :include => [:role],
+      :conditions => flash[:conditions],
       :methods => ['client_name', 'role_name']
     }
     report = User.report_table(:all, options)
@@ -160,7 +160,7 @@ class ExportController < ApplicationController
     flash[:conditions] = flash[:conditions]
     file_extension = MIME_EXTENSION[type].first
     content_type = MIME_EXTENSION[type].last
-    prefix = ( @recipient ? @recipient.client.name : 'OSSA' )
+    prefix = ( @session_user.recipient? ? @session_user.client.name : 'OSSA' )
     suffix = Time.now.strftime('%d_%m_%Y')
     filename = [ prefix, params[:action], suffix].join('_') + file_extension
 
@@ -169,12 +169,12 @@ class ExportController < ApplicationController
        headers['Pragma'] = 'public'
        headers['Content-type'] = content_type
        headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
-       headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+       headers['Content-Disposition'] = %Q{attachment; filename="#{filename}"}
        headers['Expires'] = "0"
      else
        headers["Content-type"] ||= content_type
        headers['Pragma'] = 'public'
-       headers["Content-Disposition"] = "attachment; filename=\"#{filename}\""
+       headers["Content-Disposition"] = %Q{attachment; filename="#{filename}"}
      end
     report_out = report.as(type, options)
     render(:text =>report_out , :layout => false)
