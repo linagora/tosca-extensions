@@ -19,6 +19,6 @@
 class Issue < ActiveRecord::Base
   has_many :phonecalls
 
-  register_tab 'tab_phonecall'
+  register_tab 'phonecalls'
 
 end
