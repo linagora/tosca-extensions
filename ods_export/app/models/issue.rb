@@ -8,4 +8,12 @@ class Issue < ActiveRecord::Base
   def expert_name
     (engineer ? engineer.name : '-')
   end
+
+  # It's only intended to be used by the export, so there's no check on the
+  # presence of this field. See export_controller#compute_issues if you want to
+  # see how this method is dynamically created.
+  def last_comment_content
+    html2text(self.last_comment_text)
+  end
+
 end
