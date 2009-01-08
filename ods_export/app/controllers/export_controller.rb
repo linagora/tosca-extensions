@@ -124,10 +124,12 @@ class ExportController < ApplicationController
   def compute_issues(type, options_generate)
     columns = [ 'id', 'softwares_name', 'clients_name', 'severities_name',
       'created_on_formatted', 'updated_on_formatted', 'resume',
-      'statuts_name', 'issuetypes_name', 'expert_name'
+      'statuts_name', 'issuetypes_name', 'expert_name', 'last_comment_content'
     ]
     options= { :order => 'issues.created_on', :conditions => flash[:conditions],
-      :select => Issue::SELECT_LIST, :joins => Issue::JOINS_LIST,
+      :select => Issue::SELECT_LIST + ', comments.text as last_comment_text',
+      :joins => Issue::JOINS_LIST +
+      ' INNER JOIN comments ON comments.id = issues.last_comment_id',
       :methods => columns
      }
     report = nil
@@ -136,8 +138,8 @@ class ExportController < ApplicationController
       report.reorder columns
       report.rename_columns columns,
        [ _('Id'), _('Software'), _('Customer'), _('Severity'),
-         _('Submission date'), _('Last update'),
-         _('Summary'), _('Status'), _('Type'), _('Assigned to') ]
+         _('Submission date'), _('Last update'), _('Summary'),
+         _('Status'), _('Type'), _('Assigned to'), _('Last comment') ]
     end
 
     generate_report(report, type, options_generate)
