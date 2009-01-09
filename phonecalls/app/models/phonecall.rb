@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2008 Linagora
+# Copyright (c) 2006-2009 Linagora
 #
 # This file is part of Tosca
 #
@@ -76,4 +76,8 @@ class Phonecall < ActiveRecord::Base
     end
   end
 
+  #This model is scoped by Contract
+  def self.scoped_contract?
+    true
+  end
 end
