@@ -16,4 +16,8 @@ class Issue < ActiveRecord::Base
     html2text(self.last_comment_text)
   end
 
+  def joined_tags
+    self.tag_list.join(', ')
+  end
+
 end
