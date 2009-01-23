@@ -25,7 +25,7 @@ class IssuesController < ApplicationController
     conditions = [ 'phonecalls.issue_id = ? ', @issue_id ]
     options = { :conditions => conditions, :order => 'phonecalls.start',
       :include => [:engineer, :recipient,:contract,:issue] }
-    @phonecalls = Phonecall.find(:all, options)
+    @phonecalls = Phonecall.all(options)
     render :partial => 'issues/tabs/tab_phonecalls', :layout => false
   end
 

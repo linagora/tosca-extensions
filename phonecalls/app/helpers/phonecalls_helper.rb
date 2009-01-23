@@ -20,7 +20,7 @@ module PhonecallsHelper
 
   # call it like : link_to_call call
   def link_to_call(phonecall)
-    link_to StaticImage::view, phonecall_url(:id => phonecall.id)
+    link_to StaticPicture::view, phonecall_url(:id => phonecall.id)
   end
 
   # call it like : link_to_add_call issue.id

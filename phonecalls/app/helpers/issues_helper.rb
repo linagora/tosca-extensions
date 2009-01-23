@@ -25,7 +25,7 @@ module IssuesHelper
       :method => :get }
     issue_id = @issue ? @issue.id : @issue_id
     options[:url] = ajax_phonecalls_path(issue_id)
-    desc = _('Phonecalls') + ' ' + StaticImage::telephone
+    desc = _('Phonecalls') + ' ' + StaticPicture::telephone
     link_to_remote_tab(desc, 'ajax_phonecalls', options)
   end
 

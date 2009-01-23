@@ -7,7 +7,7 @@
    <td><%= text_field :phonecall, :issue_id %></td>
   </tr><tr>
     <th><label for="phonecall_contract_id"><%= _('Contract') %></label></th>
-    <td><%= select :phonecall, :contract_id, @contracts %> <%= StaticImage::spinner %></td>
+    <td><%= select :phonecall, :contract_id, @contracts %> <%= StaticPicture::spinner %></td>
   </tr><tr>
     <th><label for="phonecall_engineer_id"><%= _('Engineers') %></label></th>
     <td><%= select :phonecall, :engineer_id, @engineers %></td>
