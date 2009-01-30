@@ -24,8 +24,8 @@ module PhonecallsHelper
   end
 
   # call it like : link_to_add_call issue.id
-  def link_to_add_call(issue_id)
-    return '-' unless issue_id
-    link_to _('Add a phone call'), new_phonecall_url(:id => issue_id)
+  def link_to_add_call(issue)
+    return '-' unless issue
+    link_to _('Add a phone call'), new_phonecall_url(:id => issue.id, :contract_id => issue.contract.id)
   end
 end

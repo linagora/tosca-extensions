@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class PhonecallsController < ApplicationController
-  helper :filters, :export, :issues, :clients
+  helper :export, :issues, :clients
 
   def index
     options = { :per_page => 15, :order => 'phonecalls.start', :include =>

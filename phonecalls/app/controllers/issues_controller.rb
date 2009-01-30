@@ -21,8 +21,8 @@ class IssuesController < ApplicationController
 
   def ajax_phonecalls
     return render(:nothing => true) unless request.xhr?
-    @issue_id = params[:id]
-    conditions = [ 'phonecalls.issue_id = ? ', @issue_id ]
+    @issue = Issue.find(params[:id])
+    conditions = [ 'phonecalls.issue_id = ? ', @issue.id ]
     options = { :conditions => conditions, :order => 'phonecalls.start',
       :include => [:engineer, :recipient,:contract,:issue] }
     @phonecalls = Phonecall.all(options)
