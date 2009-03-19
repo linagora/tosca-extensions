@@ -16,6 +16,9 @@ module ExportHelper
     export_link formatted_contributions_export_path(:ods)
   end
 
+  def contracts_export_link
+    export_link formatted_contracts_export_path(:ods)
+  end
 
   private
   # create a link with the images coresponding to the type mime of the export
