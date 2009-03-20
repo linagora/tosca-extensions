@@ -33,7 +33,7 @@ class ExportController < ApplicationController
       'salesman_name', 'pname_teams', 'pname_users' ]
     options = { :order => 'contracts.start_date ASC',
       :include => [:salesman, :manager],
-      :joins => 'INNER JOIN contracts_teams ct ON ct.contract_id=contracts.id',
+      :joins => Contract::INNER_JOIN_TEAMS
       :conditions => flash[:conditions],
       :methods => methods }
 
