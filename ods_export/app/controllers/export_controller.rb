@@ -32,8 +32,8 @@ class ExportController < ApplicationController
       'users_size', 'releases_size', 'issues_size', 'tam_name',
       'salesman_name', 'pname_teams', 'pname_users' ]
     options = { :order => 'contracts.start_date ASC',
-      :include => [:salesman, :manager],
-      :joins => Contract::INNER_JOIN_TEAMS
+      :include => [:salesman, :tam],
+      :joins => Contract::INNER_JOIN_TEAMS,
       :conditions => flash[:conditions],
       :methods => methods }
 

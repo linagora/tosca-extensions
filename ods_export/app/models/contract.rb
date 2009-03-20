@@ -17,7 +17,7 @@ class Contract < ActiveRecord::Base
     self.releases.size
   end
   def tam_name
-    (self.manager || '-').to_s
+    (self.tam || '-').to_s
   end
   def salesman_name
     (self.salesman || '-').to_s
