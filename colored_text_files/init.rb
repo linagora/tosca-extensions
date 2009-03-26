@@ -9,13 +9,15 @@ if config.frameworks.include? :action_controller
     require_dependency 'application'
     AttachmentsController.send :include, CtfAttachmentsController
     IssuesController.send :include, CtfIssuesController
+    CommentsController.send :include, CtfCommentsController
     require_dependency 'attachment'
 
-ActiveRecord::Base.send :extend, CtfFileColumn
-# This one is located in lib/ctf_file_column.rb
-FileColumn::BaseUploadedFile.send :include, CtfBaseUploadedFile
+    ActiveRecord::Base.send :extend, CtfFileColumn
+    # This one is located in lib/ctf_file_column.rb
+    FileColumn::BaseUploadedFile.send :include, CtfBaseUploadedFile
 
-ActionView::Base.send(:include, CtfFileColumnHelper) if config.frameworks.include? :action_view
-
+    if config.frameworks.include? :action_view
+      ActionView::Base.send(:include, CtfFileColumnHelper)
+    end
   end
 end
