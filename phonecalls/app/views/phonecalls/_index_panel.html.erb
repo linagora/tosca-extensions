@@ -30,12 +30,12 @@
 <li><b><%= _('From')%> </b>&nbsp;
    <% html_options = { :style => "width: 7em;", :onchange => submit_function } %>
    <%= text_field :filters, :after, html_options %>
-   <span class="calendarPicker"><%= StaticScript::date_from %></span>
-   <%= StaticScript::script_date('filters_after', 'date_from') %></li>
+   <span class="calendarPicker"><%= script_date_from %></span>
+   <%= script_date('filters_after', 'date_from') %></li>
  <li><b><%= _('To')%> </b>&nbsp;
    <%= text_field :filters, :before, html_options %>
-   <span class="calendarPicker"><%= StaticScript::date_to %></span>
-   <%= StaticScript::script_date('filters_before', 'date_to') %></li>
+   <span class="calendarPicker"><%= script_date_to %></span>
+   <%= script_date('filters_before', 'date_to') %></li>
 </ul>
 
 <%= div_toggle _('Perimeter'), 'menu_perimeter', :class => "menu_title" %>
