@@ -14,4 +14,8 @@ Rails.configuration.after_initialize do
   %w(contract contribution issue phonecall user).each { |dep|
     require_dependency dep
   }
+  [AttachmentsController, AccountController, ContractsController,
+   ContributionsController, IssuesController, ReportingController].each do |c|
+    c.send :include, OdsExportHelpers
+  end
 end

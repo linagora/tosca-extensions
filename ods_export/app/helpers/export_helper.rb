@@ -24,6 +24,6 @@ module ExportHelper
   # create a link with the images coresponding to the type mime of the export
   def export_link(url)
     style = {:class => 'nobackground'}
-    link_to(_('Export in %s') % StaticPicture::mime_ods, url)
+    link_to(_('Export in %s') % image_mime_ods, url)
   end
 end
