@@ -6,6 +6,7 @@
 </head>
   <body>
     <% #The ../../ are mandatory beacuse we are in the templates directory and not in RAILS_ROOT %>
-    <%=  File.read(path_to_uv(@pj, :file)) %>
+    <% file_path = path_to_uv(@pj, :file) %>
+    <%= File.read(file_path) if File.exists?(file_path) %>
   </body>
 </html>

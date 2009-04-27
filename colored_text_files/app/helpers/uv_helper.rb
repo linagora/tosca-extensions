@@ -8,7 +8,9 @@ module UvHelper
   end
 
   def path_to_uv(object, method)
-    App::FilesPath + url_for_uv_column(object, method)
+    object.send("#{method}_state").transform_with_uv
+    object.send(method) << "." <<
+      object.send("#{method}_options")[:uv][:theme] << ".html"
   end
 
 end
