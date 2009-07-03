@@ -1,4 +1,6 @@
 # User to send Jabber Notification
 Rails.configuration.gem 'xmpp4r'
-require 'xmpp4r'
-require_dependency 'jabber_extension'
+Rails.configuration.after_initialize do
+  require 'xmpp4r'
+  require_dependency 'jabber_extension'
+end
