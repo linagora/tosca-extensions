@@ -77,7 +77,8 @@ class Phonecall < ActiveRecord::Base
   end
 
   #This model is scoped by Contract
-  def self.scoped_contract?
+  def self.scope_contract?
     true
   end
+
 end

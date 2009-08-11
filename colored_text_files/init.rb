@@ -6,8 +6,8 @@ require_plugin 'file_column'
 # In order to not have conflict with other extension #
 if config.frameworks.include? :action_controller
   Rails.configuration.after_initialize do
-    require_dependency 'application'
-    AttachmentsController.send :include, CtfAttachmentsController
+    # require_dependency 'application'
+    ::AttachmentsController.send :include, CtfAttachmentsController
     IssuesController.send :include, CtfIssuesController
     CommentsController.send :include, CtfCommentsController
     require_dependency 'attachment'

@@ -1,23 +1,23 @@
 module ExportHelper
 
   def issues_export_link
-    export_link formatted_issues_export_path(:ods)
+    export_link issues_export_path(:format => :ods)
   end
 
   def phonecalls_export_link
-    export_link formatted_phonecalls_export_path(:ods)
+    export_link phonecalls_export_path(:format => :ods)
   end
 
   def users_export_link
-    export_link formatted_users_export_path(:ods)
+    export_link users_export_path(:format => :ods)
   end
 
   def contributions_export_link
-    export_link formatted_contributions_export_path(:ods)
+    export_link contributions_export_path(:format => :ods)
   end
 
   def contracts_export_link
-    export_link formatted_contracts_export_path(:ods)
+    export_link contracts_export_path(:format => :ods)
   end
 
   private

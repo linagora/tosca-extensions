@@ -61,7 +61,7 @@ end
 
 module CtfBaseUploadedFile
   def transform_with_uv
-    if needs_transform_uv?
+    if needs_transform_uv? and File.exists?(absolute_path)
       content = ""
       File.open(absolute_path, "r+") { |f| content = f.read }
 
