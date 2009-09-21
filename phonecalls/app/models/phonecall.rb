@@ -44,11 +44,9 @@ class Phonecall < ActiveRecord::Base
 
   # This reduced the scope of Calls to contract_ids in parameters.
   # With this, every Recipient only see what he is concerned of
-  def self.set_scope(contract_ids)
-    if contract_ids
-      self.scoped_methods << { :find => { :conditions =>
-          [ 'phonecalls.contract_id IN (?)', contract_ids ] } }
-    end
+  def self.set_scope(user)
+    self.scoped_methods << { :find => { :conditions =>
+        [ 'phonecalls.contract_id IN (?)', user.contract_ids ] } }
   end
 
   # end of the phone call, formatted without the need to load Time.
@@ -76,9 +74,5 @@ class Phonecall < ActiveRecord::Base
     end
   end
 
-  #This model is scoped by Contract
-  def self.scope_contract?
-    true
-  end
 
 end
