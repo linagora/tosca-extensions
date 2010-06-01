@@ -13,7 +13,8 @@ class Issue < ActiveRecord::Base
   # presence of this field. See export_controller#compute_issues if you want to
   # see how this method is dynamically created.
   def last_comment_content
-    html2text(self.last_comment_text)
+    require 'html_utils'
+    HtmlUtils.html2text(self.last_comment_text)
   end
 
   def joined_tags
