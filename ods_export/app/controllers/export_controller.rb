@@ -163,7 +163,7 @@ class ExportController < ApplicationController
   end
 
   def compute_issues(type, options_generate)
-    columns = [ 'id', 'softwares_name', 'clients_name', 'severities_name',
+    columns = [ 'id', 'softwares_name', 'client_name', 'severities_name',
                 'created_on_formatted', 'updated_on_formatted', 'resume',
                 'statuts_name', 'issuetypes_name', 'expert_name',
                 'last_comment_content', 'joined_tags'
